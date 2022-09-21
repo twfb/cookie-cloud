@@ -1,0 +1,5 @@
+build/ 
+dist/
+cookie_cloud.egg-info/
+cookie_cloud/__pycache__
+.history/
