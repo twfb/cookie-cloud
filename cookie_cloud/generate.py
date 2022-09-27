@@ -3,8 +3,7 @@ import os
 import json
 from os.path import expanduser
 
-HOME = expanduser("~")
-conf_path = os.path.join(HOME, ".cookie_cloud.json")
+conf_path = ".cookie_cloud.json"
 
 TEMPLATE = """
 // ==UserScript==
@@ -197,7 +196,11 @@ def main():
             open(conf_path, "w"),
             indent=2,
         )
-        print("Generated {} file successed.\nEdit it!".format(conf_path))
+        print(
+            "Generated {} file successed.\nYou can move it to HOME.\nEdit it!".format(
+                conf_path
+            )
+        )
         return
     gyc = TEMPLATE
     conf = json.load(open(conf_path))

@@ -13,10 +13,11 @@ Get all Cookies even HttpOnly Cookies.
 
 ```
 $ cc_generate
-Generated /root/.cookie_cloud.json file successed.
+Generated .cookie_cloud.json file successed.
+You can move it to HOME.
 Edit it!
 
-$ vim ~/.cookie_cloud.json
+$ vim .cookie_cloud.json
 {
     "github_user": "twb",
     "github_repo": "cookie",
@@ -44,7 +45,7 @@ Add [Tampermonkey](https://www.tampermonkey.net/) to your browser, then create T
 The Tampermonkey script while create repo and log opearations in your console.
 
 ### 4. Use it anaywhere
-> Read config from `~/.cookie_cloud.json`
+> Read config from `.cookie_cloud.json` or `~/.cookie_cloud.json`
 
 Example:
 

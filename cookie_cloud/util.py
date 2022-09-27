@@ -7,7 +7,12 @@ from os.path import expanduser
 
 HOME = expanduser("~")
 TMP_DIR = tempfile.gettempdir()
-conf_path = os.path.join(HOME, ".cookie_cloud.json")
+
+conf_path = ".cookie_cloud.json"
+if not os.path.isfile(conf_path):
+    conf_path = os.path.join(HOME, ".cookie_cloud.json")
+
+
 COOKIES_PATH = os.path.join(TMP_DIR, "cookies.json")
 conf = json.load(open(conf_path))
 
