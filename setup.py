@@ -2,7 +2,7 @@ from setuptools import setup, find_packages
 
 setup(
     name="cookie_cloud",
-    version="0.1.9",
+    version="0.1.10",
     description="Get cookie through Tampermonkey, use cookie anywhere.",
     long_description=open("README.rst").read(),
     author="twfb",

@@ -54,12 +54,13 @@ def get_issue_url(site):
     return data[-1]["url"]
 
 
-def get_cookie(site, update=False, raw=False, user=None, repo=None):
+def get_cookie(site, update=False, raw=False, user=None, repo=None, token=None):
     global conf
     cookies = {}
-    if user and repo:
+    if user and repo and token:
         conf["github_user"] = user
         conf["github_repo"] = repo
+        conf["github_token"] = token
     if os.path.isfile(COOKIES_PATH) and not update:
         cookies_str = open(COOKIES_PATH).read()
         cookies = json.loads(cookies_str) if cookies_str else {}
