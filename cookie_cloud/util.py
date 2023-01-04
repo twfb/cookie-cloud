@@ -17,13 +17,11 @@ COOKIES_PATH = os.path.join(TMP_DIR, "cookies.json")
 conf = json.load(open(conf_path)) if os.path.isfile(conf_path) else {}
 
 
-headers = {
-    "Accept": "application/vnd.github.v3+json",
-    "Authorization": "token " + conf["github_token"],
-}
-
-
 def git_get(url):
+    headers = {
+        "Accept": "application/vnd.github.v3+json",
+        "Authorization": "token " + conf["github_token"],
+    }
     return json.loads(requests.get(url, headers=headers).content)
 
 
