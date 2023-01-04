@@ -14,7 +14,7 @@ if not os.path.isfile(conf_path):
 
 
 COOKIES_PATH = os.path.join(TMP_DIR, "cookies.json")
-conf = json.load(open(conf_path))
+conf = json.load(open(conf_path)) if os.path.isfile(conf_path) else {}
 
 
 headers = {
@@ -33,7 +33,10 @@ def get_comment_body(issue_url):
         data = git_get("{}/comments?per_page=100".format(issue_url))
     if not data:
         return data
-    return json.loads(data[-1]["body"])
+    try:
+        return json.loads(data[-1]["body"])
+    except:
+        return data[-1]["body"]
 
 
 def get_issue_url(site):
@@ -51,18 +54,20 @@ def get_issue_url(site):
     return data[-1]["url"]
 
 
-def get_cookie(site, update=False, raw=False):
+def get_cookie(site, update=False, raw=False, user=None, repo=None):
+    global conf
     cookies = {}
+    if user and repo:
+        conf["github_user"] = user
+        conf["github_repo"] = repo
     if os.path.isfile(COOKIES_PATH) and not update:
         cookies_str = open(COOKIES_PATH).read()
         cookies = json.loads(cookies_str) if cookies_str else {}
     if cookies.get(site):
         return cookies[site]
-    cookie = ""
     data = get_comment_body(get_issue_url(site))
-    if raw:
-        cookie = data
-    else:
+    cookie = data
+    if isinstance(data, dict) and not raw:
         for i in data:
             cookie += i["name"] + "=" + i["value"] + ";"
     save_cookie(site, cookie)
