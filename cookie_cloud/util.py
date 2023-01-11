@@ -64,9 +64,12 @@ def get_cookie(site, update=False, raw=False, user=None, repo=None, token=None):
         cookies = json.loads(cookies_str) if cookies_str else {}
     if cookies.get(site):
         return cookies[site]
+    if not conf.get("github_user") or (not conf.get("github_repo")):
+        raise Exception("must config github_user and github_repo")
     data = get_comment_body(get_issue_url(site))
     cookie = data
-    if isinstance(data, dict) and not raw:
+    if isinstance(data, list) and not raw:
+        cookie = ""
         for i in data:
             cookie += i["name"] + "=" + i["value"] + ";"
     save_cookie(site, cookie)
