@@ -52,7 +52,7 @@ def get_issue_url(site):
     return data[-1]["url"]
 
 
-def get_cookie(site, update=False, raw=False, user=None, repo=None, token=None):
+def get_cookie(site, update=True, raw=False, user=None, repo=None, token=None):
     global conf
     cookies = {}
     if user and repo and token:

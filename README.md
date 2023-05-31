@@ -51,7 +51,7 @@ Example:
 
 ```Python
 >>> from cookie_cloud.util import get_cookie
->>> cookie = get_cookie('github.com', update=False, raw=False)
+>>> cookie = get_cookie('github.com', update=True, raw=False)
 ```
 Argument:
 - update
